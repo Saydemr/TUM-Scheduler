@@ -1,6 +1,6 @@
 const config = Object.freeze({
     term: '202201',
-    infoLink: 'https://suis.sabanciuniv.edu/prod/bwckschd.p_disp_detail_sched?term_in=202201&crn_in=',
+    infoLink: '',
     dataVersion: 31
 });
 
@@ -21,7 +21,7 @@ const templateGenerator = (() => {
 
         const end = start + duration;
 
-        return `${start < 10 ? '0' : ''}${start}:40-${end < 10 ? '0' : ''}${end}:30`;
+        return `${start < 10 ? '0' : ''}${start}:00-${end < 10 ? '0' : ''}${end}:00`;
     };
 
     const makeCourseEntry = (course, instructors, places) => `
