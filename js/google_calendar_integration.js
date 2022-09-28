@@ -4,14 +4,14 @@ const GOOGLE_API = (() => {
     //  Google API Configurations
     const CONFIG = {
         // Client ID and API key from the Developer Console
-        CLIENT_ID: '197424454819-lbdl0oae7t19604mql2aibgdc01u46eb.apps.googleusercontent.com',
-        API_KEY: 'AIzaSyBh2n_He6PjNUOuL10SGai90CF1pCMpSzA',
+        CLIENT_ID: '',
+        API_KEY: '',
 
         // Array of API discovery doc URLs for APIs used by the quickstart
-        DISCOVERY_DOCS: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+        DISCOVERY_DOCS: [''],
 
         // Authorization scopes required by the API; multiple scopes can be included, separated by spaces.
-        SCOPES: 'https://www.googleapis.com/auth/calendar',
+        SCOPES: '',
     };
 
     //  Called to load the auth2 library and API client library.
