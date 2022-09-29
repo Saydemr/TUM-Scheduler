@@ -70,7 +70,6 @@ for course in available_courses:
 
     schedule = []
     for event in events:
-        print()
         day = datetime.datetime.strptime(event["dtstart"],'%Y-%m-%dT%H:%M:%S%z').weekday()
         start_hour = datetime.datetime.strptime(event["dtstart"],'%Y-%m-%dT%H:%M:%S%z').hour - 8
         duration = (datetime.datetime.strptime(event["dtend"],'%Y-%m-%dT%H:%M:%S%z') - datetime.datetime.strptime(event["dtstart"],'%Y-%m-%dT%H:%M:%S%z')).seconds // 3600
@@ -107,4 +106,4 @@ for course in available_courses:
 
 out = {"courses": courses, "instructors": instructors, "places": places}
 
-print(json.dumps(out, indent=4))
+json.dump(out, indent=4, fp=open("data-v31.min.json", "w+"))
