@@ -20,7 +20,7 @@ def same_week(date1, date2):
               and d1.year == d2.year
 
 EVENTS_URL = "http://0.0.0.0:80/course/events%3FcourseID%3D"
-COURSES_URL = "http://0.0.0.0:80//organization/courses%3FincludeChildren%3Dtrue%26orgUnitID%3D15422"
+COURSES_URL = "http://0.0.0.0:80/organization/courses%3FincludeChildren%3Dtrue%26orgUnitID%3D15422"
 
 available_courses = requests.get(COURSES_URL).json()
 
@@ -90,7 +90,7 @@ for course in available_courses:
     sectionsDTO["group"] = ""
     
     
-    instructor = course["contacts"]["person"][0]["name"]["given"] + " " + course["contacts"]["person"][0]["name"]["family"] + " (" + course["contacts"]["person"][0]["role"]["role_id"] + ")"
+    instructor = course["contacts"]["person"][0]["name"]["given"] + " " + course["contacts"]["person"][0]["name"]["family"]
     if instructor not in instructors:
         instructors.append(instructor)
         instructor = len(instructors) - 1
@@ -105,4 +105,6 @@ for course in available_courses:
     courseDTO["classes"] = classes
     courses.append(courseDTO)
 
-print(json.dumps(courses, indent=4))
+out = {"courses": courses, "instructors": instructors, "places": places}
+
+print(json.dumps(out, indent=4))
