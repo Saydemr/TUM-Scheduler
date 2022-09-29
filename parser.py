@@ -97,8 +97,9 @@ for course in available_courses:
         instructor = instructors.index(instructor)
     
     sectionsDTO["instructors"] = instructor
+    sections.append(sectionsDTO)
 
-    classDTO["sections"] = sectionsDTO
+    classDTO["sections"] = sections
     classes.append(classDTO)
 
     courseDTO["classes"] = classes
