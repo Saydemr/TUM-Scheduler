@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="title" content="TUM-Scheduler"/>
+    <meta name="title" content="TUM-Scheduler" />
     <meta name="description" content="This website allows TUM-Dev students to create their schedule with a
-    friendly user interface."/>
-    <meta name="keywords" content="Scheduler, TUM"/>
-    <meta name="author" content="TUM-Dev"/>
-    <meta name="owner" content="TUM-Dev"/>
-    <meta name="copyright" content="(c) 2018"/>
+    friendly user interface." />
+    <meta name="keywords" content="Scheduler, TUM" />
+    <meta name="author" content="TUM-Dev" />
+    <meta name="owner" content="TUM-Dev" />
+    <meta name="copyright" content="(c) 2022" />
     <meta property="og:site_name" content="TUM-Scheduler">
     <meta property="og:title" content="TUM-Scheduler" />
     <meta property="og:description" content="This website allows TUM-Dev students to create their schedule
@@ -22,34 +23,34 @@
     <link rel="stylesheet" href="font/animation.min.css">
     <link rel="stylesheet" href="font/fontello.min.css">
     <link rel="stylesheet" href="css/jquery.modal.min.css">
-    <link rel="stylesheet" href="css/suchedule.min.css">
+    <link rel="stylesheet" href="css/tum-schedule.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/6fdf0c8f62.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-<header>
-    <div id="logo">TUM-Scheduler</div>
-    <div id="about-button" class="icon-help button"></div>
-    <div id="clear-button" class="icon-trash button">Clear</div>
-    <div id="copy-button" class="icon-clipboard button">Copy Crn</div>
-    <div id="google-calendar-button" class="icon-google-calendar button">Add to Calendar</div>
-</header>
-<div id="menu">
-    <div id="menu-toggle" class="icon-menu button"></div>
-    <div class="menu-item" id="search-box-container">
-        <input id="search-box" title="search" type="text" placeholder="Search for">
-        <select id="search-category">
-            <option value="name">Course Name</option>
-            <option value="instructor">Instructor</option>
-        </select>
-    </div>
-    <div id="day-filter" class="menu-item">
-        <div id="day-filter-label" class="filter-icon icon-calendar">
+    <header>
+        <div id="logo">TUM-Scheduler</div>
+        <div id="about-button" class="icon-help button"></div>
+        <div id="clear-button" class="icon-trash button">Clear</div>
+        <div id="copy-button" class="icon-clipboard button">Copy Crn</div>
+        <div id="google-calendar-button" class="icon-google-calendar button">Add to Calendar</div>
+    </header>
+    <div id="menu">
+        <div id="menu-toggle" class="icon-menu button"></div>
+        <div class="menu-item" id="search-box-container">
+            <input id="search-box" title="search" type="text" placeholder="Search for">
+            <select id="search-category">
+                <option value="name">Course Name</option>
+                <option value="instructor">Instructor</option>
+            </select>
         </div>
-        <div id="day-filter-selections">
+        <div id="day-filter" class="menu-item">
+            <div id="day-filter-label" class="filter-icon icon-calendar">
+            </div>
+            <div id="day-filter-selections">
                 <input id="day-filter-0" type="checkbox" checked>
                 <label for="day-filter-0">Mon</label>
                 <input id="day-filter-1" type="checkbox" checked>
@@ -60,152 +61,152 @@
                 <label for="day-filter-3">Thu</label>
                 <input id="day-filter-4" type="checkbox" checked>
                 <label for="day-filter-4">Fri</label>
+            </div>
         </div>
+        <div id="course-list-shadow" class="menu-item"></div>
+        <div id="course-list" class="menu-item loading"></div>
     </div>
-    <div id="course-list-shadow" class="menu-item"></div>
-    <div id="course-list" class="menu-item loading"></div>
-</div>
-<div id="main-content">
-    <table id="schedule">
-        <tr>
-            <th>-</th>
-            <th class="day-cell">Monday</th>
-            <th class="day-cell">Tuesday</th>
-            <th class="day-cell">Wednesday</th>
-            <th class="day-cell">Thursday</th>
-            <th class="day-cell">Friday</th>
-        </tr>
-        <tr>
-            <td class="hour-cell">08:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">09:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">10:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">11:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">12:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">13:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">14:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">15:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">16:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">17:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">18:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">19:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-        <tr>
-            <td class="hour-cell">20:00</td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-            <td class="class-cell"></td>
-        </tr>
-    </table>
-</div>
-<div id="notifications">
-    <div id="notify-about" class="notification" style="display: none;">
-        <div class="notification-header">
-            <div class="notification-header-text">About (?)</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p>Hi there, this is TUM-Developers. We've built this project with the hopes of making
-                the course registration period easier for TUM students.</p>
-            <p>Feel free to contact us about your suggestions:</p>
-            <p>johndoe@tum.de</p>
-            <p>Support us on GitHub:</p>
-            <iframe style="display:inline-block;"
+    <div id="main-content">
+        <table id="schedule">
+            <tr>
+                <th>-</th>
+                <th class="day-cell">Monday</th>
+                <th class="day-cell">Tuesday</th>
+                <th class="day-cell">Wednesday</th>
+                <th class="day-cell">Thursday</th>
+                <th class="day-cell">Friday</th>
+            </tr>
+            <tr>
+                <td class="hour-cell">08:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">09:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">10:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">11:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">12:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">13:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">14:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">15:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">16:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">17:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">18:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">19:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+            <tr>
+                <td class="hour-cell">20:00</td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+                <td class="class-cell"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="notifications">
+        <div id="notify-about" class="notification" style="display: none;">
+            <div class="notification-header">
+                <div class="notification-header-text">About (?)</div>
+                <div class="icon-cancel shake-on-hover button"></div>
+            </div>
+            <div class="notification-content">
+                <p>Hi there, this is TUM-Developers. We've built this project with the hopes of making
+                    the course registration period easier for TUM students.</p>
+                <p>Feel free to contact us about your suggestions:</p>
+                <p>johndoe@tum.de</p>
+                <p>Support us on GitHub:</p>
+                <iframe style="display:inline-block;"
                     src="https://ghbtns.com/github-btn.html?user=TUM-Dev&type=follow&count=true" frameborder="0"
                     scrolling="0" width="170px" height="20px"></iframe>
-            <iframe src="https://ghbtns.com/github-btn.html?user=TUM-Dev&repo=Campus-Android&type=star&count=true"
+                <iframe src="https://ghbtns.com/github-btn.html?user=TUM-Dev&repo=Campus-Android&type=star&count=true"
                     frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-            <iframe style="display:inline-block;"
+                <iframe style="display:inline-block;"
                     src="https://ghbtns.com/github-btn.html?user=TUM-Dev&repo=Campus-iOS&type=watch&count=true&v=2"
                     frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+            </div>
+            <div class="notification-button button">Thank You!</div>
         </div>
-        <div class="notification-button button">Thank You!</div>
-    </div>
-    <div id="notify-cookies" class="notification" style="display: none;">
-        <!-- <div class="notification-header">
+        <div id="notify-cookies" class="notification" style="display: none;">
+            <!-- <div class="notification-header">
             <div class="notification-header-text">Cookies!</div>
             <div class="icon-cancel shake-on-hover button"></div>
         </div>
@@ -213,97 +214,103 @@
             <p>This website uses cookies to save the state of your schedule. By using this website, you will be
                 consenting to the usage of
                 cookies.</p>
-        </div> -->
-        <div class="notification-header">
-            <div class="notification-header-text">Mobile App</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p> TUMScheduler Mobile App has been released. You can download the TUM-Scheduler 
-                Mobile App, which has new features such as offline mode, from the App Store 
-                and Google Play Store.</p>
-                <div class="market"><a class="market-link" href="https://play.google.com/store/apps/details?id=de.tum.in.tumcampus"><i class="fab fa-google-play"></i>   Google Play Store</a></div>
-                <div class="market"><a class="market-link" href="https://apps.apple.com/tr/app/tum-campus-app/id1557123392"><i class="fab fa-app-store"></i>   App Store</a></div>
-        </div>
-        <div class="notification-button button">I Understand</div>
-    </div>
-    <div id="notify-clear" class="notification" style="display: none;">
-        <div class="notification-header">
-            <div class="notification-header-text">Are You Sure?</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p>Are you sure you want to clear your schedule?</p>
-        </div>
-        <div class="notification-button button">Yes, I am pretty sure.</div>
-    </div>
-    <div id="notify-copied" class="notification" style="display: none;">
-        <div class="notification-header">
-            <div class="notification-header-text">Copied!</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p>You can CTRL + V anywhere to see your crns.</p>
-        </div>
-    </div>
-    <div id="notify-copy-fail" class="notification" style="display: none;">
-        <div class="notification-header">
-            <div class="notification-header-text">Couldn't Copy</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p></p>
-        </div>
-        <div class="notification-button button">Ok, I've done it myself.</div>
-    </div>
-    <div id="notify-data-updated" class="notification" style="display: none;">
-        <div class="notification-header">
-            <div class="notification-header-text">Courses Have Been Updated</div>
-            <div class="icon-cancel shake-on-hover button"></div>
-        </div>
-        <div class="notification-content">
-            <p>Sorry for clearing your schedule, but what's the use for an outdated schedule anyways?</p>
-        </div>
-        <div class="notification-button button">Apology Accepted</div>
-    </div>
-</div>
-<div id="google-calendar-modal" class="modal">
-    <h3>Add current courses to your Google Calendar</h3>
-
-    Notifications:
-    <div id="notification-area">
-    </div>
-
-    <div id="unauthorized-area">
-        <button id="authorize-button" class="icon-link-ext-alt modal-button">Sign-in</button>
-    </div>
-
-    <div id="authorized-area">
-        <div id="current-google-calendar">
-            <div id="calendar-add-area">
-                <label for="current-week">
-                    Current week of the Semester:
-                    <input id="current-week" type="number" max="14" min="1" value="1"/>
-                </label>
-
-                <button id="add-button" class="icon-ok modal-button">Add Calendar</button>
+        </div> 
+            <div class="notification-header">
+                <div class="notification-header-text">Mobile App</div>
+                <div class="icon-cancel shake-on-hover button"></div>
             </div>
+            <div class="notification-content">
+                <p> TUM-Scheduler Mobile App has been released. You can download the TUM-Scheduler
+                    Mobile App, which has new features such as offline mode, from the App Store
+                    and Google Play Store.</p>
+                <div class="market"><a class="market-link"
+                        href="https://play.google.com/store/apps/details?id=de.tum.in.tumcampus"><i
+                            class="fab fa-google-play"></i> Google Play Store</a></div>
+                <div class="market"><a class="market-link"
+                        href="https://apps.apple.com/tr/app/tum-campus-app/id1557123392"><i
+                            class="fab fa-app-store"></i> App Store</a></div>
+            </div>   -->
+            <div class="notification-button button">I Understand</div>
+        </div>
 
-            <div id="calendar-delete-area">
-                <span>You already have a calendar for this term named:</span>
-                <p id="current-calendar-name"></p>
-
-                <button id="delete-button" class="icon-trash modal-button">Delete Calendar</button>
+        <div id="notify-clear" class="notification" style="display: none;">
+            <div class="notification-header">
+                <div class="notification-header-text">Are You Sure?</div>
+                <div class="icon-cancel shake-on-hover button"></div>
+            </div>
+            <div class="notification-content">
+                <p>Are you sure you want to clear your schedule?</p>
+            </div>
+            <div class="notification-button button">Yes, I am pretty sure.</div>
+        </div>
+        <div id="notify-copied" class="notification" style="display: none;">
+            <div class="notification-header">
+                <div class="notification-header-text">Copied!</div>
+                <div class="icon-cancel shake-on-hover button"></div>
+            </div>
+            <div class="notification-content">
+                <p>You can CTRL + V anywhere to see your crns.</p>
             </div>
         </div>
-
-        <button id="signout-button" class="icon-cancel modal-button">Sign Out</button>
+        <div id="notify-copy-fail" class="notification" style="display: none;">
+            <div class="notification-header">
+                <div class="notification-header-text">Couldn't Copy</div>
+                <div class="icon-cancel shake-on-hover button"></div>
+            </div>
+            <div class="notification-content">
+                <p></p>
+            </div>
+            <div class="notification-button button">Ok, I've done it myself.</div>
+        </div>
+        <div id="notify-data-updated" class="notification" style="display: none;">
+            <div class="notification-header">
+                <div class="notification-header-text">Courses Have Been Updated</div>
+                <div class="icon-cancel shake-on-hover button"></div>
+            </div>
+            <div class="notification-content">
+                <p>Sorry for clearing your schedule, but what's the use for an outdated schedule anyways?</p>
+            </div>
+            <div class="notification-button button">Apology Accepted</div>
+        </div>
     </div>
-</div>
+    <div id="google-calendar-modal" class="modal">
+        <h3>Add current courses to your Google Calendar</h3>
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery.modal.min.js"></script>
-<script src="js/clipboard.min.js"></script>
-<script src="js/suchedule.min.js"></script>
+        Notifications:
+        <div id="notification-area">
+        </div>
+
+        <div id="unauthorized-area">
+            <button id="authorize-button" class="icon-link-ext-alt modal-button">Sign-in</button>
+        </div>
+
+        <div id="authorized-area">
+            <div id="current-google-calendar">
+                <div id="calendar-add-area">
+                    <label for="current-week">
+                        Current week of the Semester:
+                        <input id="current-week" type="number" max="20" min="1" value="1" />
+                    </label>
+
+                    <button id="add-button" class="icon-ok modal-button">Add Calendar</button>
+                </div>
+
+                <div id="calendar-delete-area">
+                    <span>You already have a calendar for this term named:</span>
+                    <p id="current-calendar-name"></p>
+
+                    <button id="delete-button" class="icon-trash modal-button">Delete Calendar</button>
+                </div>
+            </div>
+
+            <button id="signout-button" class="icon-cancel modal-button">Sign Out</button>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.modal.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/tum-schedule.js"></script>
 </body>
+
 </html>
