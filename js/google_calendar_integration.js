@@ -5,7 +5,7 @@ const GOOGLE_API = (() => {
     const CONFIG = {
         // Client ID and API key from the Developer Console
         CLIENT_ID: '498557024832-07og3qlc6cu3pipaiio6n49k3ahtlko6.apps.googleusercontent.com',
-        API_KEY: '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',
+        API_KEY: 'AIzaSyAAlZREiPdw_2-nuTocsoC55xRJtSePXSA',
 
         // Array of API discovery doc URLs for APIs used by the quickstart
         DISCOVERY_DOCS: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
