@@ -47,7 +47,6 @@ const CALENDAR_API = (() => {
         return new Promise(function (resolve, reject) {
             const request = gapi.client.calendar.calendars.insert({
                 'summary': calendarSummary,
-                //  https://eduardopereira.pt/2012/06/google-calendar-api-v3-set-color-color-chart/
                 'colorId': 8,
             });
 
