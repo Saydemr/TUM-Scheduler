@@ -7,12 +7,46 @@ const config = Object.freeze({
 
 // function to get crns of saved-schedule
 const getSavedSchedule = () => {
-    const savedSchedule = localStorage.getItem('savedSchedule');
+    const savedSchedule = localStorage.getItem('saved-schedule');
     if (savedSchedule) {
-        return JSON.parse(savedSchedule);
+        return savedSchedule.split(',');
     }
     return [];
 };
+
+// function to get objects from API using crns
+const getCourseData = (crns) => {
+    const sectionData = [];
+    const scheduleData = [];
+    
+    // fetch json file from API
+    const response = fetch(`https://saydemr.github.io/data/mock-data-v31.min.json`);
+    const data = response.json();
+
+    // get course data from json file
+    for (const crn of crns) {
+
+        // find the section of course with the crn in the response json file
+        const section = data.courses.classes.sections.filter((section) => section.crn === crn);
+        if (section.length > 0) {
+            sectionData.push(section);
+            scheduleData.push(section.schedule);
+        }
+    }
+    return { sectionData, scheduleData };
+};
+
+
+// function to create non-conflicting schedule from scheduleData
+const createSchedule = () => {
+    const {section, schedule} = getCourseData(getSavedSchedule());
+    console.log(schedule);
+    console.log(section);
+};
+
+
+
+
 
 const templateGenerator = (() => {
     const getDayFromCode = (() => {
@@ -123,7 +157,8 @@ const colorPalette = (() => {
 
 const saveSchedule = () => {
     localStorage.setItem('saved-schedule', cellCourses.getAllCrnDataToSave().join(','));
-    console.log(getSavedSchedule());
+    getSavedSchedule();
+    createSchedule();
 };
 
 const courseEntry = (() => {
