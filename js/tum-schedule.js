@@ -22,6 +22,8 @@ const getCourseData = async (crns) => {
     // fetch json file from API
     const response = await fetch(`https://saydemr.github.io/data/mock-data-v31.min.json`);
     const data = await response.json();
+    
+    console.log(data);
 
     // get course data from json file
     for (const crn of crns) {
