@@ -62,7 +62,6 @@ for course in available_courses:
     
     classes = []
     classDTO = {}
-    classDTO["type"] = ""
     
     sectionsDTO = {}
     sections = []
@@ -100,6 +99,7 @@ for course in available_courses:
     sections.append(sectionsDTO)
 
     classDTO["sections"] = sections
+    classDTO["type"] = ""
     classes.append(classDTO)
 
     courseDTO["classes"] = classes
