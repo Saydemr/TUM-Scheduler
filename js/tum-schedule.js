@@ -1,8 +1,18 @@
 const config = Object.freeze({
     term: '202201',
-    infoLink: '',
+    infoLink: 'https://campus.tum.de/tumonline/ee/rest/pages/slc.tm.cp/course-position-in-curriculum/',
     dataVersion: 31
 });
+
+
+// function to get crns of saved-schedule
+const getSavedSchedule = () => {
+    const savedSchedule = localStorage.getItem('savedSchedule');
+    if (savedSchedule) {
+        return JSON.parse(savedSchedule);
+    }
+    return [];
+};
 
 const templateGenerator = (() => {
     const getDayFromCode = (() => {
@@ -113,6 +123,7 @@ const colorPalette = (() => {
 
 const saveSchedule = () => {
     localStorage.setItem('saved-schedule', cellCourses.getAllCrnDataToSave().join(','));
+    console.log(getSavedSchedule());
 };
 
 const courseEntry = (() => {
