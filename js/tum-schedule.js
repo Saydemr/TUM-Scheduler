@@ -15,13 +15,13 @@ const getSavedSchedule = () => {
 };
 
 // function to get objects from API using crns
-const getCourseData = (crns) => {
+const getCourseData = async (crns) => {
     const sectionData = [];
     const scheduleData = [];
     
     // fetch json file from API
-    const response = fetch(`https://saydemr.github.io/data/mock-data-v31.min.json`);
-    const data = response.json();
+    const response = await fetch(`https://saydemr.github.io/data/mock-data-v31.min.json`);
+    const data = await response.json();
 
     // get course data from json file
     for (const crn of crns) {
