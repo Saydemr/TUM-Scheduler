@@ -24,6 +24,7 @@ const getCourseData = async (crns) => {
     const data = await response.json();
     
     console.log(data);
+    console.log(crns);
 
     // get course data from json file
     for (const crn of crns) {
