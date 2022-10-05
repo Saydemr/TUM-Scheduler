@@ -31,10 +31,8 @@ const getCourseData = async (crns) => {
 
         // find the section of course with the crn in the response json file
         const section = data.courses.classes.sections.filter((section) => section.crn === crn);
-        if (section.length > 0) {
-            sectionData.push(section);
-            scheduleData.push(section.schedule);
-        }
+        sectionData.push(section);
+        scheduleData.push(section.schedule);
     }
     return { sectionData, scheduleData };
 };
