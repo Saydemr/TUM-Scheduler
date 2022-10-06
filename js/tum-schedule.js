@@ -1,7 +1,7 @@
 const data = fetch(`https://saydemr.github.io/uploads/mock-data-v31.min.json`).then((response) => {
-    return response.json()
+    return response.json();
     }).then((data) => {
-        console.log(data)
+        console.log(data);
     })
 const response = data;
 
