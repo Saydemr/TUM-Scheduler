@@ -1,9 +1,11 @@
+const response = await fetch(`https://saydemr.github.io/uploads/mock-data-v31.min.json`);
+const data = await response.json();
+
 const config = Object.freeze({
     term: '202201',
     infoLink: 'https://campus.tum.de/tumonline/ee/rest/pages/slc.tm.cp/course-position-in-curriculum/',
     dataVersion: 31
 });
-
 
 // function to get crns of saved-schedule
 const getSavedSchedule = () => {
@@ -15,13 +17,9 @@ const getSavedSchedule = () => {
 };
 
 // function to get objects from API using crns
-const getCourseData = async (crns) => {
+const getCourseData = (crns) => {
     const sectionData = [];
     const scheduleData = [];
-    
-    // fetch json file from API
-    const response = await fetch(`https://saydemr.github.io/data/mock-data-v31.min.json`);
-    const data = await response.json();
     
     console.log(data);
     console.log(crns);
@@ -41,13 +39,66 @@ const getCourseData = async (crns) => {
 // function to create non-conflicting schedule from scheduleData
 const createSchedule = () => {
     const {section, schedule} = getCourseData(getSavedSchedule());
-    console.log(schedule);
-    console.log(section);
 };
 
+// convert day hour to time
+const convertDayHourToWeeklyTime = (day, hour) => {
+    return day * 24 + hour + 8;
+}
+
+const checkCollision = (startTime, endTime) => {
+    for (const {scheduleStart, scheduleEnd} of scheduleData) {
+        if ((startTime >= scheduleStart && startTime < scheduleEnd) ||
+            (endTime > scheduleStart && endTime <= scheduleEnd) ||
+            (startTime <= scheduleStart && endTime >= scheduleEnd)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const getRequestedSections = (crns) => {
+    const requestedSections = [];
+    for (const crn of crns) {
+        const section = data.courses.classes.sections.filter((section) => section.crn === crn);
+        requestedSections.push(section);
+    }
+    return requestedSections;
+}
 
 
+const createNonConflictingSchedule = (crns) => {
+    sections = getRequestedSections(crns);
 
+    allocatedTimeSlots = [];
+    allocatedSectionCrns = [];
+    for (crn of crns) {
+        for (section of sections) {
+            if (section.crn === crn) {
+                tempSchedule = [];
+                tempCrns = [];
+
+                hasCollision = false;
+                for (schedule of section.schedule) {
+                    start = convertDayHourToWeeklyTime(schedule.day, schedule.start);
+                    end = convertDayHourToWeeklyTime(schedule.day, schedule.start + schedule.duration);
+                    if (!checkCollision(schedule.start, schedule.end)) {
+                        tempSchedule.push([start, end]);
+                        tempCrns.push(section.crn);
+                    }
+                    else {
+                        hasCollision = true;
+                    }
+
+                    if (!hasCollision) {
+                        allocatedTimeSlots.push(tempSchedule);
+                        allocatedSectionCrns.push(tempCrns);
+                    }
+                }
+            }
+        }
+    }
+}
 
 const templateGenerator = (() => {
     const getDayFromCode = (() => {
@@ -72,7 +123,7 @@ const templateGenerator = (() => {
     const makeCourseEntry = (course, instructors, places) => `
         <div class="course-entry hide-info" data-code="${course.code}">
             <div class="course-header">
-                <div class="course-name">${course.code} - ${course.name}</div>
+                <div class="course-name">${course.name}</div>
                 <div class="course-expand icon-right-open-big"></div>
             </div>
             <div class="course-info">
