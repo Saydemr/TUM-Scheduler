@@ -1,5 +1,9 @@
-const response = await fetch(`https://saydemr.github.io/uploads/mock-data-v31.min.json`);
-const data = await response.json();
+const data = fetch(`https://saydemr.github.io/uploads/mock-data-v31.min.json`).then((response) => {
+    return response.json()
+    }).then((data) => {
+        console.log(data)
+    })
+const response = data;
 
 const config = Object.freeze({
     term: '202201',
